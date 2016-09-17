@@ -19,7 +19,7 @@
     "compile": "static-include .",
     "compile:w": "static-include -w .",
     "static-include": "static-include",
-    "server": "http-server . -p 8080"
+    "start": "http-server . -p 8080"
   },
   "author": "Jason Yu <me@ycmjason.com> (ycmjason.com)",
   "license": "ISC"
