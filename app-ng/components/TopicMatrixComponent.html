@@ -1,0 +1,9 @@
+<h2>Topic matrix</h2>
+<div ng-if="$ctrl.topics.length <= 0">
+  Fetching topics...
+  <app-preloader size="tiny" type="circular"></app-preloader>
+</div>
+
+<div ng-if="$ctrl.topics.length > 0">
+  <topic-matrix-table topics="$ctrl.topics"></topic-matrix-table>
+</div>

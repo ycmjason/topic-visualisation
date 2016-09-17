@@ -1,0 +1,16 @@
+<html ng-app="LDAApp" ng-strict-di>
+  <head>
+    <title>Topic visualisations</title>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script><script src="node_modules/angular/angular.min.js"></script><script src="node_modules/materialize-css/dist/js/materialize.min.js"></script><script src="node_modules/angular-materialize/src/angular-materialize.min.js"></script><script src="node_modules/angular-route/angular-route.min.js"></script><script src="node_modules/chart.js/dist/Chart.min.js"></script><script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons"><link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"><link rel="stylesheet" href="app-ng/css/index.css">
+  </head>
+  <body>
+    <ng-view>
+      Loading... If this takes too long, possibly it's some random server problem. Try to refresh.
+    </ng-view>
+
+    <script src="app-ng/main.js"></script><script src="app-ng/shared/layoutProvider.js"></script><script src="app-ng/route.config.js"></script><script src="app-ng/chartjs.config.js"></script><script src="app-ng/shared/colorService.js"></script><script src="app-ng/shared/topicService.js"></script><script src="app-ng/shared/keyboardEventService.js"></script><script src="app-ng/shared/watcherFactory.js"></script><script src="app-ng/components/SortIconComponent.js"></script><script src="app-ng/components/AppNavComponent.js"></script><script src="app-ng/components/PreloaderComponent.js"></script><script src="app-ng/components/TopicGraphPageComponent.js"></script><script src="app-ng/components/TopicMatrixComponent.js"></script><script src="app-ng/components/TopicMatrixTableComponent.js"></script><script src="app-ng/components/TopicMatrixTableOptionsComponent.js"></script><script src="app-ng/directives/scrollableTableDirective.js"></script><script src="app-ng/directives/uiDraggableDirective.js"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+.container-fluid{
+  width:98%;
+  margin: 0 auto;
+}
+.scrollable{
+  overflow: auto;
+}
+.clickable:hover{
+  cursor: pointer; 
+}
+
+topic-matrix .scrollable{
+  max-height: 30em
+}
+
+topic-matrix-table .color_map_legend{
+  border-right: white 1px solid;
+}
+
+.chip .custom-close{
+  cursor: pointer;
+  float: right;
+  font-size: 16px;
+  line-height: 32px;
+  padding-left: 8px;
+}

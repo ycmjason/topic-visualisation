@@ -1,0 +1,10 @@
+<nav class="row">
+  <div class="nav-wrapper container">
+    <a href="#!/" class="brand-logo left">{{$ctrl.app_name}}</a>
+    <ul class="right">
+      <li ng-repeat="link in $ctrl.menu">
+        <a href="{{link.href}}">{{link.label}}</a>
+      </li>
+    </ul>
+  </div>
+</nav>

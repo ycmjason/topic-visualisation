@@ -1,0 +1,159 @@
+<div ng-if="$ctrl.fetching">
+  Fetching topics...
+  <app-preloader size="tiny" type="circular"></app-preloader>
+</div>
+
+<div ng-if="!$ctrl.fetching">
+
+  <div class="row">
+    <a class="waves-effect waves-light btn"
+       ng-click="$ctrl.options.show = !$ctrl.options.show">SHOW/HIDE OPTIONS</a>
+  </div>
+
+  <div class="card" ng-show="$ctrl.options.show">
+    <div class="card-content">
+      <div class="card-title">Options</div>
+      <div class="row">
+
+        <div class="col s12">
+          How many entries? (too many will cause performance issue)
+          <a ng-click="show_maximum_entries=!show_maximum_entries" href="">edit maximum entries</a>
+        </div>
+        <div class="col s12">
+          <div input-field ng-if="show_maximum_entries">
+            <input type="text" ng-model="$ctrl.options.max_entries">
+            <label>maximum entries</label>
+          </div>
+          <p class="range-field">
+            <input type="range" step="10" min="0" max="{{$ctrl.options.max_entries}}" value="{{$ctrl.options.n}}" ng-model="$ctrl.options.n" ng-mouseup="$ctrl.updateChart()">
+          </p>
+        </div>
+
+        <div class="row"></div>
+        <div class="col s12">
+          From where?
+        </div>
+        <div class="col s12">
+          <p class="range-field">
+            <input type="range" min="0" max="{{$ctrl.topics[0].words_dist.length-$ctrl.options.n}}" value="{{$ctrl.options.from}}" ng-model="$ctrl.options.from" ng-mouseup="$ctrl.updateChart()">
+          </p>
+        </div>
+
+        <div class="row"></div>
+        <div class="col s12">
+          How to sort?
+        </div>
+        <div class="col s12">
+          <input name="sorting_method"
+            type="radio"
+            value="alphabet"
+            id="sort_alphabet"
+            ng-change="$ctrl.updateChart()"
+            ng-model="$ctrl.options.sorting_method">
+          <label for="sort_alphabet">Alphabet</label>
+        </div>
+        <div class="col s12">
+          <input name="sorting_method"
+            type="radio"
+            value="probability"
+            id="sort_probability"
+            ng-model="$ctrl.options.sorting_method">
+          <label for="sort_probability">Probability</label>
+        </div>
+        <div class="col s6" ng-show="$ctrl.options.sorting_method=='probability'">
+          <select ng-model="$ctrl.options.sorting_method_topic"
+            ng-change="$ctrl.updateChart()"
+            material-select watch>
+            <option value="" disabled selected>Select one topic</option>
+            <option ng-repeat="topic in $ctrl.topics"
+              ng-value="topic.label">{{topic.label}}</option>
+          </select>
+        </div>
+
+        <div class="row"></div>
+        <div class="col s12">
+          Chart type:
+        </div>
+        <div class="col s1">
+          <input name="chart_type"
+            type="radio"
+            value="bar"
+            id="chart_type_bar"
+            ng-model="$ctrl.options.chart_type">
+          <label for="chart_type_bar">bar</label>
+        </div>
+        <div class="col s1">
+          <input name="chart_type"
+            type="radio"
+            value="line"
+            id="chart_type_line"
+            ng-model="$ctrl.options.chart_type">
+          <label for="chart_type_line">line</label>
+        </div>
+
+        <div class="row"></div>
+        <div class="col s12">
+          Y axes max value
+        </div>
+        <div class="col s1">
+          <input name="chart_max_y"
+            type="radio"
+            value="auto"
+            id="chart_max_y_auto"
+            ng-change="$ctrl.setYMax()"
+            ng-model="$ctrl.options.chart_max_y">
+          <label for="chart_max_y_auto">auto</label>
+        </div>
+        <div class="col s5" input-field>
+          <input
+            type="text"
+            ng-change="$ctrl.setYMax()"
+            ng-model="$ctrl.options.chart_max_y">
+          <label>maximum of y-axes</label>
+        </div>
+
+
+        <div class="row"></div>
+        <div class="col s12">Combined chart:</div>
+        <div class="col s12" input-field>
+          <select ng-model="$ctrl.options.combined_chart_topics"
+            ng-change="$ctrl.updateCombinedChart()"
+            material-select multiple watch>
+            <option value="" disabled selected>Choose the topics</option>
+            <option ng-repeat="topic in $ctrl.topics">{{topic.label}}</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title">{{$ctrl.charts.combined.name}}</div>
+      <canvas
+        class="chart-base"
+        chart-type="$ctrl.options.chart_type"
+        chart-data="$ctrl.charts.combined.data"
+        chart-labels="$ctrl.charts.combined.labels"
+        chart-series="$ctrl.charts.combined.series"
+        chart-options="$ctrl.charts_options">
+      </canvas>
+    </div>
+  </div>
+
+  <div class="card" ng-repeat="chart in $ctrl.charts">
+    <div class="card-content">
+      <div class="card-title">{{chart.name}}</div>
+      <canvas
+        class="chart-base"
+        chart-type="$ctrl.options.chart_type"
+        chart-data="chart.data"
+        chart-labels="chart.labels"
+        chart-options="$ctrl.charts_options">
+      </canvas>
+    </div>
+  </div>
+
+</div>

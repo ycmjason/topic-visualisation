@@ -1,0 +1,26 @@
+{
+  "name": "gui_web",
+  "version": "1.0.0",
+  "description": "Web GUI for LDA",
+  "main": "siconfig.js",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-chart.js": "^1.0.2",
+    "angular-materialize": "^0.2.1",
+    "angular-route": "^1.5.8",
+    "jquery": "^3.1.0",
+    "materialize-css": "^0.97.7"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "static-include": "^0.1.9"
+  },
+  "scripts": {
+    "compile": "static-include .",
+    "compile:w": "static-include -w .",
+    "static-include": "static-include",
+    "server": "http-server . -p 8080"
+  },
+  "author": "Jason Yu <me@ycmjason.com> (ycmjason.com)",
+  "license": "ISC"
+}

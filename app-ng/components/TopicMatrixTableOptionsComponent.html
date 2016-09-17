@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col s12">
+    <a class="waves-effect waves-light btn"
+       ng-click="$ctrl.options.show = !$ctrl.options.show">SHOW/HIDE OPTIONS</a>
+  </div>
+</div>
+<div class="card" ng-show="$ctrl.options.show">
+  <div class="card-content">
+    <div class="card-title">Options</div>
+    <div class="row">
+
+      <div class="col s3">
+        Number of colors in color map:
+      </div>
+      <div class="col s9" input-field>
+        <input id="number_of_colors"
+          type="number"
+          ng-model="$ctrl.options.number_of_colors">
+        <label for="number_of_colors">Number of colors</label>
+      </div>
+
+      <div class="col s3" input-field>
+        Color pivots
+        <span
+          tooltipped
+          data-tooltip="Color pivots are colors that you wish the color map to cover. Only accept hex or rgb style."
+          data-position="top">
+          (?)
+        </span>:
+        <br>
+        <a href="http://htmlcolorcodes.com/color-picker/"
+          target="_blank">
+          <i class="tiny material-icons">launch</i>http://htmlcolorcodes.com/color-picker/
+        </a>
+        <br>
+        <a href="http://www.colorpicker.com/"
+          target="_blank">
+          <i class="tiny material-icons">launch</i>http://www.colorpicker.com/
+        </a>
+      </div>
+
+      <div class="col s9">
+        <div input-field>
+          <input id="add_color"
+            type="text"
+            ng-model="$ctrl.inputs.add_color"
+            ng-keyup="$ctrl.addColorKeyup($event)">
+          <label for="add_color">Add more color</label>
+        </div>
+        <div
+          class="chip"
+          ng-repeat="color in $ctrl.options.color_pivots track by $index"
+          ng-style="{'background-color': color, 'color': $ctrl.contrastColor(color)}"
+          ui-draggable
+          on-drop="$ctrl.onDrop($event)"
+          data-index="{{$index}}">
+            {{color}}
+            <i class="custom-close material-icons"
+              ng-click="$ctrl.removeColor($index)"
+              ng-show="$ctrl.options.color_pivots.length > 2">close</i>
+        </div>
+        <div
+          class="chip"
+          ng-if="$ctrl.inputs.add_color"
+          ng-style="{'background-color': $ctrl.inputs.add_color, 'color': $ctrl.contrastColor($ctrl.inputs.add_color)}">
+            {{$ctrl.inputs.add_color}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
